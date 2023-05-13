@@ -1,6 +1,7 @@
-class Product(
-    val ProductID : Long,
-    val ProductSKU : Int,
+data class Product(
+    val ProductID : Long = 0,
+    val ProductSKU : String,
     val ProductDescription : String,
     val ProductSellingPrice : Double,
-    val ProductPurchasePrice : Double)
+    val ProductPurchasePrice : Double
+)
