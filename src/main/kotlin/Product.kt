@@ -17,3 +17,10 @@ data class ProductClient(
     val ProductClientID : Int,
     val ProductClientPrice : Double
 )
+
+// I use this class to update the product supplier with my post method
+data class ProductSupplier(
+    val ProductID : Int,
+    val ProductSupplierID : Int,
+    val ProductSupplierPrice : Double
+)

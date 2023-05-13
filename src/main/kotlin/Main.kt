@@ -49,4 +49,8 @@ fun main(args: Array<String>) {
     // Step 3: Create a relationship between Nike shoes and the client babis.
     val productClient = ProductClient(30, 11,  99.99)
 //    ApiClient.insertProductClient(productClient)
+
+    // Step 4: Create a relationship between Adidas shoes and the supplier odysseus.
+    val productSupplier = ProductSupplier(29, 10, 44.99)
+//    ApiClient.insertProductSupplier(productSupplier)
 }

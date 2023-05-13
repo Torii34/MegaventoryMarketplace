@@ -19,6 +19,7 @@ object ApiClient {
         val mvSupplierClient : SupplierClient? = null,
         val mvInventoryLocation : InventoryLocation? = null,
         val mvProductClientUpdate : ProductClient? = null,
+        val mvProductSupplierUpdate : ProductSupplier? = null,
         val mvRecordAction : String= "Insert"
     )
 
@@ -86,6 +87,12 @@ object ApiClient {
         val requestBody = RequestBody(mvProductClientUpdate = productClient)
 
         return postRequest("ProductClient/ProductClientUpdate", Gson().toJson(requestBody))
+    }
+
+    fun insertProductSupplier(productSupplier: ProductSupplier) : Response{
+        val requestBody = RequestBody(mvProductSupplierUpdate = productSupplier)
+
+        return postRequest("ProductSupplier/ProductSupplierUpdate", Gson().toJson(requestBody))
     }
 }
 
