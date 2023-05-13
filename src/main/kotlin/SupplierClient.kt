@@ -6,3 +6,8 @@ data class SupplierClient(
     val SupplierClientPhone1 : Long,
     val SupplierClientEmail: String
 )
+
+// I needed this class to retrieve the suppliers and clients that are in a list in response to my get method
+data class SupplierClients(
+    val mvSupplierClients: List<SupplierClient>
+)

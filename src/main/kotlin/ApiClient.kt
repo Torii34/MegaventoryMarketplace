@@ -18,6 +18,7 @@ object ApiClient {
         var mvProduct : Product? = null,
         val mvSupplierClient : SupplierClient? = null,
         val mvInventoryLocation : InventoryLocation? = null,
+        val mvProductClientUpdate : ProductClient? = null,
         val mvRecordAction : String= "Insert"
     )
 
@@ -32,6 +33,35 @@ object ApiClient {
             .build()
 
         return client.newCall(request).execute()
+    }
+
+    // This method is the base for the get request
+    private fun getRequest(url : String) : Response{
+
+        val request = Request.Builder()
+            .url("$BASE_URL$url?APIKEY=a033feaf88a570a2@m140934")
+            .build()
+
+        return client.newCall(request).execute()
+
+    }
+
+    // I needed this get methods to get the ID of my entities
+    fun getProduct() : List<Product>{
+
+        val jsonResponse = getRequest("json/reply/ProductGet").body?.string()
+
+        val products = Gson().fromJson(jsonResponse, Products::class.java)
+
+        return products.mvProducts
+    }
+
+    fun getSupplierClient() : List<SupplierClient>{
+        val jsonResponse = getRequest("json/reply/SupplierClientGet").body?.string()
+
+        val supplierClients = Gson().fromJson(jsonResponse, SupplierClients::class.java)
+
+        return supplierClients.mvSupplierClients
     }
 
     fun insertProduct(product: Product) : Response{
@@ -50,6 +80,12 @@ object ApiClient {
         val requestBody = RequestBody(mvInventoryLocation = inventoryLocation)
 
         return postRequest("InventoryLocation/InventoryLocationUpdate", Gson().toJson(requestBody))
+    }
+
+    fun insertProductClient(productClient: ProductClient) : Response{
+        val requestBody = RequestBody(mvProductClientUpdate = productClient)
+
+        return postRequest("ProductClient/ProductClientUpdate", Gson().toJson(requestBody))
     }
 }
 

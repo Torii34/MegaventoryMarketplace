@@ -46,4 +46,7 @@ fun main(args: Array<String>) {
 
 //    ApiClient.insertInventoryLocation(test)
 
+    // Step 3: Create a relationship between Nike shoes and the client babis.
+    val productClient = ProductClient(30, 11,  99.99)
+//    ApiClient.insertProductClient(productClient)
 }
