@@ -20,6 +20,7 @@ object ApiClient {
         val mvInventoryLocation : InventoryLocation? = null,
         val mvProductClientUpdate : ProductClient? = null,
         val mvProductSupplierUpdate : ProductSupplier? = null,
+        val mvProductStockUpdateList : List<InventoryLocationStock>? = null,
         val mvRecordAction : String= "Insert"
     )
 
@@ -65,6 +66,14 @@ object ApiClient {
         return supplierClients.mvSupplierClients
     }
 
+    fun getInventoryLocation() : List<InventoryLocation>{
+        val jsonResponse = getRequest("json/reply/InventoryLocationGet").body?.string()
+
+        val inventoryLocations = Gson().fromJson(jsonResponse, InventoryLocations::class.java)
+
+        return inventoryLocations.mvInventoryLocations
+    }
+
     fun insertProduct(product: Product) : Response{
         val requestBody = RequestBody(mvProduct = product)
 
@@ -93,6 +102,13 @@ object ApiClient {
         val requestBody = RequestBody(mvProductSupplierUpdate = productSupplier)
 
         return postRequest("ProductSupplier/ProductSupplierUpdate", Gson().toJson(requestBody))
+    }
+
+    //I don't know why but updating the product unit cost doesn't work, even in the API documentation
+    fun insertInventoryLocationStock(inventoryLocationStocks : List<InventoryLocationStock>) : Response{
+        val requestBody = RequestBody(mvProductStockUpdateList = inventoryLocationStocks)
+
+        return postRequest("InventoryLocationStock/ProductStockUpdate", Gson().toJson(requestBody))
     }
 }
 

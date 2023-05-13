@@ -53,4 +53,18 @@ fun main(args: Array<String>) {
     // Step 4: Create a relationship between Adidas shoes and the supplier odysseus.
     val productSupplier = ProductSupplier(29, 10, 44.99)
 //    ApiClient.insertProductSupplier(productSupplier)
+
+    //Step 5: Update the availability of products in 5 units in the warehouse you added at a cost of 44.99 each.
+    val inventoryLocationStock1 = InventoryLocationStock("1112256", 5.0, 44.99, 3 )
+    val inventoryLocationStock2 = InventoryLocationStock("1112248", 5.0, 44.99,3 )
+
+    //I don't know why but updating the product unit cost doesn't work, even in the API documentation
+    val inventoryLocationStockList = listOf(inventoryLocationStock1, inventoryLocationStock2)
+//    ApiClient.insertInventoryLocationStock(inventoryLocationStockList)
+
+    // Example of use of my get methods
+    for(product : Product in ApiClient.getProduct()){
+        println("Product description: ${product.ProductDescription}")
+    }
+
 }
